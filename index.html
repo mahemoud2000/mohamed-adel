@@ -15,44 +15,34 @@
         }
 
         body {
-            background-color: #f2f2f2;
+            background-color: #5e5d5d;
             color: #333;
             line-height: 1.6;
             overflow-x: hidden;
             direction: rtl;
         }
 
-        /* شريط التنقل */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 30px;
-            background-color: #333;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            color: #ffd700;
-        }
+      header {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+    background-color: #000;
+    padding: 20px;
+      }
+      .logo a {
+        color: white;
+        font-size: 25px;
+        font-weight: bold;
+        text-decoration: none;
 
-        .navbar a {
-            color: #ffd700;
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        .navbar a:hover {
-            color: #fff;
-        }
-
+      }
         /* زر الواتس اب */
         .whatsapp-icon {
         position: fixed;
         bottom: 100px;
         right: 30px;
-        background-color: #25d366;
+        background-color: #000;
         border-radius: 50%;
         padding: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -83,8 +73,8 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/fix-car.jpg') no-repeat center center/cover;
-            color: #ffd700;
+            background: linear-gradient(rgba(0, 0, 0, 0.968), rgba(0, 0, 0, 0.741)), url('images/fix-car.jpg') no-repeat center center/cover;
+            color: white;
             text-align: center;
             /* z-index: 20; */
         }
@@ -106,16 +96,18 @@
         .hero button {
             padding: 15px 30px;
             font-size: 1.2em;
-            color: #333;
-            background-color: #ffd700;
+            color: #fff;
+            background-color: #000;
             border: none;
             cursor: pointer;
             transition: background-color 0.3s;
             animation: fadeIn 3s ease;
+            border-radius: 5px;
         }
 
         .hero button:hover {
-            background-color: #e6b800;
+            background-color: #fff;
+            color: black;
         }
 
         /* تنسيق الأقسام */
@@ -124,12 +116,14 @@
             opacity: 0;
             transform: translateY(50px);
             transition: all 0.6s ease-in-out;
+            background-color: #bdbcbc;
         }
 
         .section.visible {
             opacity: 1;
             transform: translateY(0);
         }
+  
 
         .section h2 {
             text-align: center;
@@ -204,13 +198,14 @@
         .contact-form button {
             width: 100%;
             padding: 15px;
-            background-color: #ffd700;
+            background-color: #000;
             color: #333;
             font-size: 1em;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
+            color: #fff;
         }
         .contact-form button:hover {
             background-color: #e6b800;
@@ -241,7 +236,7 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background-color: #ffd700;
+            background-color: #000;
             padding: 10px 20px;
             font-size: 1.2em;
             border: none;
@@ -249,10 +244,12 @@
             border-radius: 50%;
             display: none;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            color: #fff;
         }
 
         .scroll-to-top:hover {
-            background-color: #e6b800;
+            background-color: #ffa;
+            color: #000;
         }
 
         /* الفوتر */
@@ -271,7 +268,7 @@
         .back-ask {
             position: fixed;
             z-index: 100;
-            background-color: #000000ab;
+            background-color: #000000d8;
             width: 100%;
             height: 100%;
             display: flex;
@@ -279,19 +276,20 @@
             align-items: center;
         }
         .visitor-message {
-            background-color: #7775757d;
+            background-color: #232222e1;
             color: white;
             width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            /* align-items: center; */
+            align-items: center;
             padding: 20px;
             row-gap: 20px;
         }
         .visitor-message p {
             width: 100%;
             text-align: center;
+            font-size: 20px;
         }
         .visitor-message button {
             padding: 10px;
@@ -299,6 +297,7 @@
             cursor: pointer;
             transition: 0.5s;
             font-weight: bold;
+            width: 60px;
         }
         .visitor-message button:hover {
             background-color: #000;
@@ -317,13 +316,9 @@
             color: black;
         }
 /* mobile screen start */
-header {
-    width: 100%;
-    background-color: #000;
-    padding: 20px;
-}
+
 .large-screen {
-    width: 100%;
+    width: 50%;
     justify-content: space-around;
     display: flex;
     list-style: none;
@@ -332,7 +327,7 @@ header {
 }
 .large-screen li a {
     text-decoration: none;
-    color: #ffd700;
+    color: #fff;
 }
 .large-screen li a:hover {
     text-decoration: none;
@@ -426,8 +421,10 @@ header {
         <div class="back-ask" id="backAsk">
             <div id="visitorMessage" class="visitor-message">
                 <p>هل هذه أول زيارة لك؟</p>
+               <div class="btns">
                 <button id="yesButton">نعم</button>
                 <button id="noButton">لا</button>
+               </div>
             </div>
         </div>
     <!-- شريط التنقل -->
@@ -439,6 +436,7 @@ header {
         <a href="#contact">تواصل معنا</a>
     </div> -->
 <header>
+    <div class="logo"><a href="#">كارجيني</a></div>
     <ul class="large-screen">
         <li><a href="#home">الرئيسية</a></li>
         <li><a href="#services">الخدمات</a></li>
@@ -496,8 +494,8 @@ header {
         <div class="gallery">
             <img src="images/fix-1.jpg" alt="خدمة 1">
             <img src="images/fix-2.jpg" alt="خدمة 2">
-            <img src="images/fix-3.jpg" alt="خدمة 3">
-            <img src="images/fix-4.jpg" alt="خدمة 4">
+            <!-- <img src="images/fix-3.jpg" alt="خدمة 3"> -->
+            <!-- <img src="images/fix-4.jpg" alt="خدمة 4"> -->
         </div>
     </section>
     <!-- قسم من نحن -->
@@ -526,7 +524,7 @@ header {
     <button class="scroll-to-top" onclick="window.scrollTo({top: 0,behavior: 'smooth'});">↑</button>
     <!-- الفوتر -->
     <footer>
-        <p>Made By <a href="https://mahemoud2000.github.io/new-update-mobile-18-10-2024" target="_blank" class="link-mahmoud">Mahmoud Hamed</a>&copy;2024</p>
+        <p>Made By <a href=" https://mahmoud-a-hamed.github.io/protfolio" target="_blank" class="link-mahmoud">Mahmoud Hamed</a>&copy;2024</p>
     </footer>
     <script type="module">
 // استيراد Firebase Libraries
