@@ -3,106 +3,367 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
   <title>لوحة تحكم محمد عادل</title>
-  <link rel="stylesheet" href="style.css">
   <style>
     body {
-  font-family: Arial, sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #2e2e2e;
-  color: white;
-}
-
-h1 {
-  margin-top: 20px;
-}
-
-table {
-  width: 80%;
-  margin: 20px 0;
-  border-collapse: collapse;
-  background-color: #444;
-}
-
-th, td {
-  padding: 10px;
-  text-align: center;
-  border: 1px solid #555;
-}
-
-th {
-  background-color: #555;
-}
-
-td {
-  background-color: #333;
-}
-
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #2e2e2e;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    h1 {
+      color: #ffffff;
+      margin-top: 20px;
+      font-size: 24px;
+    }
+    h3 {
+      margin: 20px 0;
+      color: #f1f1f1;
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #333;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    input[type="text"], textarea {
+      padding: 10px;
+      margin-top: 10px;
+      width: 100%;
+      max-width: 300px;
+      background-color: #444;
+      border: 1px solid #555;
+      color: white;
+      border-radius: 5px;
+    }
+    .update-btn {
+      background-color: #2196F3;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+    .update-btn:hover {
+      background-color: #1976D2;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 15px;
+      text-align: center;
+      border: 1px solid #555;
+      background-color: #444;
+    }
+    th {
+      background-color: #555;
+    }
+    td {
+      background-color: #333;
+    }
+    button {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .delete-btn {
+      background-color: #f44336;
+    }
+    .delete-btn:hover {
+      background-color: #d32f2f;
+    }
+    .edit-btn, .save-btn {
+      background-color: #ffa500;
+    }
+    .edit-btn:hover, .save-btn:hover {
+      background-color: #e67e22;
+    }
+    .message-container {
+      background-color: #4caf50;
+      color: white;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 5px;
+      display: none;
+      width: 100%;
+      max-width: 1000px;
+      text-align: center;
+    }
+    .message-container.error {
+      background-color: #f44336;
+    }
+    .message-container.success {
+      background-color: #4caf50;
+    }
+    @media (max-width: 768px) {
+      table {
+        font-size: 14px;
+      }
+      button {
+        width: 100%;
+        padding: 12px;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>لوحة تحكم محمد عادل</h1>
-  <table id="dataTable">
-    <thead>
-      <tr>
-        <th>العنوان</th>
-        <th>التفاصيل</th>
-      </tr>
-    </thead>
-    <tbody id="dataBody">
-      <!-- سيتم إدراج البيانات هنا -->
-    </tbody>
-  </table>
 
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js"></script>
+  <h1>لوحة تحكم محمد عادل</h1>
+
+  <div class="container">
+    <!-- عرض اسم الموقع -->
+    <h3>اسم الموقع: <span id="siteName">غير محدد</span></h3>
+    
+    <!-- حقل تغيير اسم الموقع -->
+    <div>
+      <input type="text" id="siteNameInput" placeholder="أدخل اسم الموقع">
+      <button class="update-btn" onclick="updateSiteName()">تحديث اسم الموقع</button>
+    </div>
+    
+    <!-- حقل تغيير عنوان الموقع -->
+    <h3>تغيير عنوان الموقع</h3>
+    <div>
+      <textarea id="siteHeadingInput" placeholder="أدخل عنوان الموقع" rows="4"></textarea>
+      <button class="update-btn" onclick="updateSiteHeading()">تحديث عنوان الموقع</button>
+    </div>
+
+    <!-- حقل تغيير وصف الموقع -->
+    <div>
+      <h3>تغيير وصف الموقع</h3>
+      <textarea id="siteDescriptionInput" placeholder="أدخل وصف الموقع" rows="4"></textarea>
+      <button class="update-btn" onclick="updateSiteDescription()">تحديث وصف الموقع</button>
+    </div>
+
+
+
+    <!-- رسالة نجاح أو خطأ -->
+    <div id="messageContainer" class="message-container"></div>
+
+    <!-- عدد الزوار -->
+    <h3>عدد الزوار: <span id="visitorCount">0</span></h3>
+
+    <!-- عرض حجم البيانات -->
+    <div id="sizeInfo">
+      <p>حجم البيانات: <span id="dataSize">0</span> كيلوبايت</p>
+    </div>
+
+    <!-- زر مسح جميع البيانات -->
+    <button onclick="deleteAllData()">مسح جميع البيانات</button>
+
+    <!-- جدول لعرض العملاء -->
+    <h2>العملاء</h2>
+    <table id="customersTable">
+      <thead>
+        <tr>
+          <th>الاسم</th>
+          <th>البريد الإلكتروني</th>
+          <th>رقم الهاتف </th>
+          <th>الرسالة</th>
+          <th>التوقيت</th>
+          <th>إجراءات</th>
+        </tr>
+      </thead>
+      <tbody id="customersBody">
+        <!-- سيتم إدراج البيانات هنا -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- تضمين مكتبات Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
   <script>
     // إعداد Firebase
-// إعداد Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyDZNhlq4a1DWW2LTbMTaUJhA1MIPkeq1UY",
-  authDomain: "mohamed-adel-e2e13.firebaseapp.com",
-  databaseURL: "https://mohamed-adel-e2e13-default-rtdb.firebaseio.com",
-  projectId: "mohamed-adel-e2e13",
-  storageBucket: "mohamed-adel-e2e13.firebasestorage.app",
-  messagingSenderId: "806857656486",
-  appId: "1:806857656486:web:407269dafb311284b6cc67"
-};
+    const firebaseConfig = {
+      apiKey: "AIzaSyDZNhlq4a1DWW2LTbMTaUJhA1MIPkeq1UY",
+      authDomain: "mohamed-adel-e2e13.firebaseapp.com",
+      databaseURL: "https://mohamed-adel-e2e13-default-rtdb.firebaseio.com",
+      projectId: "mohamed-adel-e2e13",
+      storageBucket: "mohamed-adel-e2e13.firebasestorage.app",
+      messagingSenderId: "806857656486",
+      appId: "1:806857656486:web:407269dafb311284b6cc67"
+    };
 
-
-
-    // تهيئة التطبيق
     firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
 
-    // جلب البيانات من قاعدة البيانات
-    const fetchData = async () => {
-      const snapshot = await database.ref('/').get();
-      const data = snapshot.val();
-      const dataBody = document.getElementById('dataBody');
-      
-      // إعادة تعيين محتوى الجدول
-      dataBody.innerHTML = '';
+    // تحديث اسم الموقع في قاعدة البيانات
+    const updateSiteName = () => {
+      const siteNameInput = document.getElementById('siteNameInput').value;
+      if (siteNameInput.trim() === "") {
+        alert("الرجاء إدخال اسم الموقع");
+        return;
+      }
 
-      // عرض البيانات في الجدول
-      for (const key in data) {
-        const row = document.createElement('tr');
-        const titleCell = document.createElement('td');
-        const detailsCell = document.createElement('td');
-        
-        titleCell.textContent = key;
-        detailsCell.textContent = JSON.stringify(data[key]);
-        
-        row.appendChild(titleCell);
-        row.appendChild(detailsCell);
-        dataBody.appendChild(row);
+      // تخزين اسم الموقع في قاعدة بيانات جديدة باسم siteSettings
+      database.ref('/siteSettings/siteName').set(siteNameInput)
+        .then(() => {
+          document.getElementById('siteName').textContent = siteNameInput;
+          document.getElementById('siteNameInput').value = ""; // مسح الحقل بعد التحديث
+          alert("تم تحديث اسم الموقع بنجاح");
+        })
+        .catch(error => alert("حدث خطأ أثناء تحديث اسم الموقع: " + error.message));
+    };
+
+    // تحديث وصف الموقع في قاعدة البيانات
+    const updateSiteDescription = () => {
+      const siteDescriptionInput = document.getElementById('siteDescriptionInput').value;
+      if (siteDescriptionInput.trim() === "") {
+        alert("الرجاء إدخال وصف الموقع");
+        return;
+      }
+
+      // تخزين وصف الموقع في قاعدة بيانات جديدة باسم siteSettings
+      database.ref('/siteSettings/description').set(siteDescriptionInput)
+        .then(() => {
+          alert("تم تحديث وصف الموقع بنجاح");
+          document.getElementById('siteDescriptionInput').value = ""; // مسح الحقل بعد التحديث
+        })
+        .catch(error => alert("حدث خطأ أثناء تحديث وصف الموقع: " + error.message));
+    };
+
+    // تحديث عنوان الموقع في قاعدة البيانات
+    const updateSiteHeading = () => {
+      const siteHeadingInput = document.getElementById('siteHeadingInput').value;
+      if (siteHeadingInput.trim() === "") {
+        alert("الرجاء إدخال عنوان الموقع");
+        return;
+      }
+
+      const siteHeadingRef = database.ref('/siteSettings/heading');
+      siteHeadingRef.set(siteHeadingInput)
+        .then(() => {
+          alert("تم تحديث عنوان الموقع بنجاح");
+          document.getElementById('siteHeadingInput').value = "";
+        })
+        .catch(error => alert("حدث خطأ أثناء تحديث عنوان الموقع: " + error.message));
+    };
+
+
+
+    // عرض اسم الموقع عند تحميل الصفحة
+    const displaySiteName = () => {
+      const siteNameRef = database.ref('/siteSettings/siteName');
+      siteNameRef.once('value', snapshot => {
+        const siteName = snapshot.val();
+        if (siteName) {
+          document.getElementById('siteName').textContent = siteName;
+        }
+      });
+    };
+
+    // عرض وصف الموقع عند تحميل الصفحة
+    const displaySiteDescription = () => {
+      const siteDescriptionRef = database.ref('/siteSettings/description');
+      siteDescriptionRef.once('value', snapshot => {
+        const siteDescription = snapshot.val();
+        if (siteDescription) {
+          document.getElementById('siteDescriptionInput').value = siteDescription;
+        }
+      });
+    };
+
+    // تحديث عدد الزوار في الوقت الفعلي
+    const updateVisitorCount = () => {
+      const responsesRef = database.ref('/visitorResponses');
+      responsesRef.on('value', snapshot => {
+        const count = snapshot.numChildren();
+        document.getElementById('visitorCount').textContent = count;
+      });
+    };
+
+    // تحديث حجم البيانات
+    const updateDataSize = () => {
+      const dataRef = database.ref();
+      dataRef.once('value')
+        .then(snapshot => {
+          const size = JSON.stringify(snapshot.val()).length / 1024; // التحويل إلى كيلوبايت
+          document.getElementById('dataSize').textContent = `${size.toFixed(2)} كيلوبايت`;
+        })
+        .catch(error => alert("حدث خطأ أثناء حساب حجم البيانات: " + error.message));
+    };
+
+    // حذف جميع البيانات
+    const deleteAllData = () => {
+      if (confirm("هل أنت متأكد أنك تريد مسح جميع البيانات؟")) {
+        database.ref('/customers').remove()
+          .then(() => database.ref('/visitorResponses').remove())
+          .then(() => {
+            alert("تم مسح جميع البيانات بنجاح");
+            document.getElementById('customersBody').innerHTML = '';
+            updateVisitorCount();
+            updateDataSize();
+          })
+          .catch(error => alert("حدث خطأ أثناء مسح البيانات: " + error.message));
       }
     };
 
-    // استدعاء الدالة لجلب البيانات وعرضها
-    fetchData();
+    // إضافة عميل إلى الجدول
+    const displayCustomer = (key, data) => {
+      const customersBody = document.getElementById('customersBody');
+      const row = document.createElement('tr');
+      row.id = 'cust-' + key;
+      row.innerHTML = `
+        <td>${data.name}</td>
+        <td>${data.email}</td>
+        <td>${data.phone}</td>
+        <td>${data.message}</td>
+        <td>${data.timestamp}</td>
+        <td><button class="delete-btn" onclick="deleteCustomer('${key}')">حذف</button></td>
+      `;
+      customersBody.appendChild(row);
+    };
+
+    // حذف عميل
+    const deleteCustomer = (key) => {
+      if (confirm("هل أنت متأكد أنك تريد حذف هذا العميل؟")) {
+        database.ref('/customers/' + key).remove()
+          .then(() => {
+            document.getElementById('cust-' + key).remove();
+            alert("تم حذف العميل بنجاح");
+          })
+          .catch(error => alert("حدث خطأ أثناء حذف العميل: " + error.message));
+      }
+    };
+
+    // عرض العملاء من قاعدة البيانات عند تحميل الصفحة
+    const displayCustomers = () => {
+      const customersRef = database.ref('/customers');
+      customersRef.on('child_added', snapshot => {
+        const customer = snapshot.val();
+        const key = snapshot.key;
+        displayCustomer(key, customer);
+      });
+    };
+
+    // تحميل البيانات عند بداية الصفحة
+    displaySiteName();
+    displaySiteDescription();
+    updateVisitorCount();
+    updateDataSize();
+    displayCustomers();
   </script>
 </body>
 </html>
