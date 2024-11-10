@@ -4,423 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>خدمات صيانة السيارات - محمد عادل</title>
-    <style>
-        /* إعدادات عامة */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: #5e5d5d;
-            color: #333;
-            line-height: 1.6;
-            overflow-x: hidden;
-            direction: rtl;
-        }
-
-      header {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        width: 100%;
-    background-color: #000;
-    padding: 20px;
-      }
-      .logo a {
-        color: white;
-        font-size: 25px;
-        font-weight: bold;
-        text-decoration: none;
-
-      }
-      .logo a:hover {
-        color: #bdbcbc;
-
-      }
-        /* زر الواتس اب */
-        .whatsapp-icon {
-        position: fixed;
-        bottom: 100px;
-        right: 30px;
-        background-color: #000;
-        border-radius: 50%;
-        padding: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        overflow: hidden;
-        width: 50px;
-        display: flex;
-        z-index: 10;
-    }
-
-    .whatsapp-icon img {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-    }
-
-    .whatsapp-icon:hover {
-        background-color: #128c7e;
-    }
-    .link-mahmoud {
-        color: white;
-        margin: 0 10px;
-    }
-
-        /* قسم البطل */
-        .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.968), rgba(0, 0, 0, 0.741)), url('images/fix-car.jpg') no-repeat center center/cover;
-            color: white;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            animation: fadeIn 2s ease;
-        }
-
-        .hero p {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            max-width: 700px;
-            animation: fadeIn 2.5s ease;
-        }
-
-        .hero button {
-            padding: 15px 30px;
-            font-size: 1.2em;
-            color: #fff;
-            background-color: #000;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            animation: fadeIn 3s ease;
-            border-radius: 5px;
-        }
-
-        .hero button:hover {
-            background-color: #fff;
-            color: black;
-        }
-
-        /* تنسيق الأقسام */
-        .section {
-            padding: 80px 20px;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.6s ease-in-out;
-            background-color: #bdbcbc;
-        }
-
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-  
-
-        .section h2 {
-            text-align: center;
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .section p {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            color: #666;
-        }
-
-        /* خدمات */
-        .services {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .service-box {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            text-align: center;
-            width: 250px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s;
-        }
-
-        .service-box:hover {
-            transform: translateY(-10px);
-        }
-
-        .service-box h3 {
-            font-size: 1.5em;
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        .service-box p {
-            color: #666;
-        }
-
-        /* نموذج التواصل */
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .contact-form label {
-            display: block;
-            margin-bottom: 5px;
-            color: #333;
-        }
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .contact-form button {
-            width: 100%;
-            padding: 15px;
-            background-color: #000;
-            color: #333;
-            font-size: 1em;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            color: #fff;
-        }
-        .contact-form button:hover {
-            background-color: #fff;
-            color:#000;
-            border: 1px solid black;
-        }
-        /* قسم الصور */
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            padding: 20px 0;
-        }
-
-        .gallery img {
-            width: 300px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px;
-            transition: transform 0.3s;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .gallery img:hover {
-            transform: scale(1.05);
-        }
-        /* زر التمرير لأعلى */
-        .scroll-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #000;
-            padding: 10px 20px;
-            font-size: 1.2em;
-            border: none;
-            cursor: pointer;
-            border-radius: 50%;
-            display: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            color: #fff;
-        }
-
-        .scroll-to-top:hover {
-            background-color: #ffa;
-            color: #000;
-        }
-
-        /* الفوتر */
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 15px;
-            font-size: 0.9em;
-        }
-        /* حركات */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .back-ask {
-            position: fixed;
-            z-index: 100;
-            background-color: #000000d8;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .visitor-message {
-            background-color: #232222e1;
-            color: white;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            row-gap: 20px;
-        }
-        .visitor-message p {
-            width: 100%;
-            text-align: center;
-            font-size: 20px;
-        }
-        .visitor-message button {
-            padding: 10px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: 0.5s;
-            font-weight: bold;
-            width: 60px;
-        }
-        .visitor-message button:hover {
-            background-color: #000;
-            color: white;
-            outline: none;
-            border: none;
-        }
-        .social-midea {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .social-midea a {
-            color: black;
-        }
-/* mobile screen start */
-
-.large-screen {
-    width: 50%;
-    justify-content: space-around;
-    display: flex;
-    list-style: none;
-    height: 50px;
-    align-items: center;
-}
-.large-screen li a {
-    text-decoration: none;
-    color: #fff;
-}
-.large-screen li a:hover {
-    color: #bdbcbc;
-}
-.list-mobile {
-    display: none;
-}
-@media (max-width: 1200px) {
-
-    .list-mobile {
-    display: block;
-}
-.large-screen {
-    display: none;
-}
-
-}
-.small-screen {
-    width: 100%;
-    background-color: #000;
-    position: absolute;
-    top: 70px;
-    right: 0px;
-    display: none;
-    flex-direction: column;
-    list-style: none;
-    padding: 20px;
-    row-gap: 20px;
-}
-.small-screen::before {
-    content: "";
-    width: 0;
-    height: 0;
-    border: 15px solid black;
-    border-color: transparent transparent black transparent;
-    position: absolute;
-    top: -30px;
-}
-.small-screen li {
-    cursor: pointer;
-    width: 100%;
-    text-align: center;
-    border-bottom: 1px solid white;
-    padding: 10px 0;
-}
-.small-screen li a {
-    text-decoration: none;
-    color: #fff;
-}
-.small-screen li:hover a {
-    color: #bdbcbc;
-    padding-right: 20px;
-    transition: 0.5s;
-}
-.list-mobile .child-list {
-    width: 50px;
-    height: 50px;
-    background-color: #4f4e4e;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    row-gap: 5px;
-    flex-direction: column;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.child-list:hover .small-screen {
-    display: block !important; 
-}
-.list-mobile .child-list:hover .ch {
-    width: 30px !important;
-    transition: 0.5s;
-}
-.list-mobile .child-list .option {
-    width: 30px;
-    height: 2px;
-    background-color: #fff;
-}
-.list-mobile .child-list  .ch {
-    width: 15px !important;
-    height: 2px;
-    background-color: #fff;
-}
-/* mobile screen end */
-.design {
-    color: #fff;
-}
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body id="body"> 
     <!-- أيقونة واتساب -->
@@ -437,16 +21,13 @@
                </div>
             </div>
         </div>
-    <!-- شريط التنقل -->
-    <!-- <div class="navbar">
-        <a href="#home">الرئيسية</a>
-        <a href="#services">الخدمات</a>
-        <a href="#gallery">امثلة مصورة</a>
-        <a href="#about">من نحن</a>
-        <a href="#contact">تواصل معنا</a>
-    </div> -->
 <header>
-    <div class="logo"><a href="#">كارجيني</a></div>
+    <!-- التغيير اليانا عايزو هنا -->
+    <!-- <div class="logo"><a href="#">كارجيني</a></div> -->
+    <div class="logo">
+        <a href="#" id="siteLink">اسم الموقع</a>
+      </div>
+    <!-- لحد هنا فقط -->
     <ul class="large-screen">
         <li><a href="#home">الرئيسية</a></li>
         <li><a href="#services">الخدمات</a></li>
@@ -471,8 +52,10 @@
 </header>
     <!-- قسم البطل -->
     <section class="hero" id="home">
-        <h1>محمد عادل - خدمات صيانة السيارات</h1>
-        <p>خدمة صيانة احترافية لجميع أنواع السيارات، مع إمكانية الوصول إلى باب منزلك</p>
+        <!-- <h1 id="heading">محمد عادل - خدمات صيانة السيارات</h1> -->
+        <h1 id="heading"></h1>
+        <!-- <p>خدمة صيانة احترافية لجميع أنواع السيارات، مع إمكانية الوصول إلى باب منزلك</p> -->
+         <p id="decription"></p>
         <button onclick="document.getElementById('contact').scrollIntoView()">احجز الآن</button>
     </section>
     <!-- قسم الخدمات -->
@@ -521,6 +104,7 @@
         <form id="contactForm">
             <input type="text" id="name" placeholder="الاسم" required>
             <input type="email" id="email" placeholder="البريد الإلكتروني" required>
+            <input type="number" id="phone" placeholder="رقم الهاتف " required>
             <textarea id="message" placeholder="الرسالة" required></textarea>
             <button type="submit" class="btn">إرسال</button>
         </form>
@@ -538,104 +122,156 @@
          <p>تم التصميم بواسطة <a href="https://mahmoud-a-hamed.github.io/protfolio" target="_blank" class="design">محمود حامد </a> © 2024 جميع الحقوق محفوظة</p>
     </footer>
     <script type="module">
-// استيراد Firebase Libraries
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+        // استيراد Firebase Libraries
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+        import { getDatabase, ref, push, set, onValue } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+        
+        // إعدادات Firebase الخاصة بك
+        const firebaseConfig = {
+          apiKey: "AIzaSyDZNhlq4a1DWW2LTbMTaUJhA1MIPkeq1UY",
+          authDomain: "mohamed-adel-e2e13.firebaseapp.com",
+          databaseURL: "https://mohamed-adel-e2e13-default-rtdb.firebaseio.com",
+          projectId: "mohamed-adel-e2e13",
+          storageBucket: "mohamed-adel-e2e13.firebasestorage.app",
+          messagingSenderId: "806857656486",
+          appId: "1:806857656486:web:407269dafb311284b6cc67"
+        };
+        
+        // تهيئة Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app); // استخدام getDatabase للحصول على مرجع قاعدة البيانات
+        
+// ربط عنصر a مع قاعدة البيانات لتحديث الاسم تلقائيًا
+const updateSiteName = () => {
+  const siteNameRef = ref(db, '/siteSettings/siteName'); // استخدم db بدلاً من firebase.database()
 
-// إعدادات Firebase الخاصة بك
-const firebaseConfig = {
-  apiKey: "AIzaSyDZNhlq4a1DWW2LTbMTaUJhA1MIPkeq1UY",
-  authDomain: "mohamed-adel-e2e13.firebaseapp.com",
-  databaseURL: "https://mohamed-adel-e2e13-default-rtdb.firebaseio.com",
-  projectId: "mohamed-adel-e2e13",
-  storageBucket: "mohamed-adel-e2e13.firebasestorage.app",
-  messagingSenderId: "806857656486",
-  appId: "1:806857656486:web:407269dafb311284b6cc67"
-};
-
-// تهيئة Firebase
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-
-// دالة لحفظ بيانات العملاء في Realtime Database
-function storeCustomerData(name, email, message) {
-  const customersRef = ref(db, 'customers');
-  const newCustomerRef = push(customersRef);
-  set(newCustomerRef, {
-    name: name,
-    email: email,
-    message: message,
-    timestamp: new Date().toISOString()
-  })
-  .then(() => {
-    alert("تم إرسال رسالتك بنجاح!");
-  })
-  .catch((error) => {
-    console.error("حدث خطأ أثناء حفظ البيانات: ", error);
-    alert("حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة مرة أخرى.");
-  });
-}
-
-// ربط النموذج بحدث الإرسال
-document.getElementById("contactForm").addEventListener("submit", (e) => {
-  e.preventDefault();
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const message = document.getElementById("message").value;
-
-  // استدعاء الدالة لحفظ البيانات في Realtime Database
-  storeCustomerData(name, email, message);
-
-  // تنظيف الحقول بعد الإرسال
-  document.getElementById("contactForm").reset();
-});
-
-// ظهور الأقسام عند التمرير
-const sections = document.querySelectorAll('.section');
-window.addEventListener('scroll', () => {
-  sections.forEach(section => {
-    const sectionTop = section.getBoundingClientRect().top;
-    if (sectionTop < window.innerHeight - 100) {
-      section.classList.add('visible');
+  // تحديث الاسم في الصفحة بشكل لحظي عند تغييره في قاعدة البيانات
+  onValue(siteNameRef, (snapshot) => { // استخدم onValue بدلاً من on
+    const siteName = snapshot.val();
+    if (siteName) {
+      document.getElementById('siteLink').textContent = siteName;
     }
   });
-});
-
-// التعامل مع الرسالة
-const visitorMessage = document.getElementById("visitorMessage");
-const yesButton = document.getElementById("yesButton");
-const noButton = document.getElementById("noButton");
-
-// تسجيل الرد في Firebase
-function logVisitorResponse(response) {
-  const responseRef = ref(db, 'visitorResponses'); // تأكد من استخدام 'db' وليس 'database'
-  const newResponseRef = push(responseRef);
-  set(newResponseRef, {
-    response: response,
-    timestamp: new Date().toISOString()
-  });
-}
-
-// إخفاء الرسالة وعرض الرد
-yesButton.addEventListener("click", function() {
-  logVisitorResponse("نعم");
-  backAsk.style.display = 'none';
-});
-
-noButton.addEventListener("click", function() {
-  logVisitorResponse("لا");
-  backAsk.style.display = 'none';
-});
-
-// زر التمرير لأعلى
-const scrollToTopButton = document.querySelector('.scroll-to-top');
-window.onscroll = () => {
-  if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
-    scrollToTopButton.style.display = 'block';
-  } else {
-    scrollToTopButton.style.display = 'none';
-  }
 };
-    </script>
+
+// استدعاء الدالة لعرض الاسم وتحديثه لحظيًا
+updateSiteName();
+
+// تغيير الوصف 
+const updateDescription = () => {
+  const siteDescriptionRef = ref(db, '/siteSettings/description'); // استخدم db بدلاً من firebase.database()
+
+  // تحديث الوصف في الصفحة بشكل لحظي عند تغييره في قاعدة البيانات
+  onValue(siteDescriptionRef, (snapshot) => { // استخدم onValue بدلاً من on
+    const descriptionSite = snapshot.val();
+    if (descriptionSite) {
+      document.getElementById('decription').textContent = descriptionSite;
+    }
+  });
+};
+
+// استدعاء الدالة لعرض الوصف وتحديثه لحظيًا
+updateDescription();
+        
+
+// تغيير العنوان 
+const updateHeading = () => {
+  const siteHeadingRef = ref(db, '/siteSettings/heading'); // استخدم db بدلاً من firebase.database()
+
+  // تحديث العنوان في الصفحة بشكل لحظي عند تغييره في قاعدة البيانات
+  onValue(siteHeadingRef, (snapshot) => { // استخدم onValue بدلاً من on
+    const headingSite = snapshot.val();
+    if (headingSite) {
+      document.getElementById('heading').textContent = headingSite;
+    }
+  });
+};
+
+// استدعاء الدالة لعرض العنوان وتحديثه لحظيًا
+updateHeading();
+
+        // دالة لحفظ بيانات العملاء في Realtime Database
+        function storeCustomerData(name, email, message, phone) {
+          const customersRef = ref(db, 'customers');
+          const newCustomerRef = push(customersRef);
+          set(newCustomerRef, {
+            name: name,
+            email: email,
+            message: message,
+            phone: phone,
+            timestamp: new Date().toISOString()
+          })
+          .then(() => {
+            alert("تم إرسال رسالتك بنجاح!");
+          })
+          .catch((error) => {
+            console.error("حدث خطأ أثناء حفظ البيانات: ", error);
+            alert("حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة مرة أخرى.");
+          });
+        }
+        
+        // ربط النموذج بحدث الإرسال
+        document.getElementById("contactForm").addEventListener("submit", (e) => {
+          e.preventDefault();
+          const name = document.getElementById("name").value;
+          const email = document.getElementById("email").value;
+          const message = document.getElementById("message").value;
+          const phone = document.getElementById("phone").value;
+        
+          // استدعاء الدالة لحفظ البيانات في Realtime Database
+          storeCustomerData(name, email, message, phone);
+        
+          // تنظيف الحقول بعد الإرسال
+          document.getElementById("contactForm").reset();
+        });
+        
+        // ظهور الأقسام عند التمرير
+        const sections = document.querySelectorAll('.section');
+        window.addEventListener('scroll', () => {
+          sections.forEach(section => {
+            const sectionTop = section.getBoundingClientRect().top;
+            if (sectionTop < window.innerHeight - 100) {
+              section.classList.add('visible');
+            }
+          });
+        });
+        
+        // التعامل مع الرسالة
+        const visitorMessage = document.getElementById("visitorMessage");
+        const yesButton = document.getElementById("yesButton");
+        const noButton = document.getElementById("noButton");
+        
+        // تسجيل الرد في Firebase
+        function logVisitorResponse(response) {
+          const responseRef = ref(db, 'visitorResponses'); // تأكد من استخدام 'db' وليس 'firebase'
+          const newResponseRef = push(responseRef);
+          set(newResponseRef, {
+            response: response,
+            timestamp: new Date().toISOString()
+          });
+        }
+        
+        // إخفاء الرسالة وعرض الرد
+        yesButton.addEventListener("click", function() {
+          logVisitorResponse("نعم");
+          backAsk.style.display = 'none';
+        });
+        
+        noButton.addEventListener("click", function() {
+          logVisitorResponse("لا");
+          backAsk.style.display = 'none';
+        });
+        
+        // زر التمرير لأعلى
+        const scrollToTopButton = document.querySelector('.scroll-to-top');
+        window.onscroll = () => {
+          if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+            scrollToTopButton.style.display = 'block';
+          } else {
+            scrollToTopButton.style.display = 'none';
+          }
+        };
+        </script>
+        
 </body>
 </html>
