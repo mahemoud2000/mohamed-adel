@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="css/style.css">
   <title>لوحة تحكم محمد عادل</title>
   <style>
-    body {
+        body {
       font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 0;
@@ -28,32 +28,36 @@
       color: #f1f1f1;
     }
     .container {
-      width: 90%;
-      max-width: 1200px;
+      width: 100%;
+      max-width: 1000px;
       margin: 0 auto;
       padding: 20px;
       background-color: #333;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      box-sizing: border-box;
     }
     input[type="text"], textarea {
-      padding: 10px;
+      padding: 12px;
       margin-top: 10px;
       width: 100%;
-      max-width: 300px;
+      max-width: 100%;
       background-color: #444;
       border: 1px solid #555;
       color: white;
       border-radius: 5px;
+      box-sizing: border-box;
     }
     .update-btn {
       background-color: #2196F3;
       color: white;
-      padding: 10px 20px;
+      padding: 12px 20px;
       border: none;
       cursor: pointer;
       border-radius: 5px;
       margin-top: 10px;
+      width: 100%;
+      box-sizing: border-box;
     }
     .update-btn:hover {
       background-color: #1976D2;
@@ -78,12 +82,14 @@
     button {
       background-color: #4caf50;
       color: white;
-      padding: 10px 20px;
+      padding: 12px 20px;
       border: none;
       cursor: pointer;
       font-size: 16px;
       border-radius: 5px;
       transition: background-color 0.3s;
+      width: 100%;
+      box-sizing: border-box;
     }
     button:hover {
       background-color: #45a049;
@@ -117,13 +123,25 @@
     .message-container.success {
       background-color: #4caf50;
     }
+    /* تحسين التوافق مع الهواتف */
     @media (max-width: 768px) {
+      h1 {
+        font-size: 20px;
+      }
+      h3 {
+        font-size: 18px;
+      }
+      .container {
+        padding: 15px;
+      }
+      input[type="text"], textarea, .update-btn, button {
+        padding: 14px;
+      }
       table {
         font-size: 14px;
       }
-      button {
-        width: 100%;
-        padding: 12px;
+      table th, table td {
+        padding: 10px;
       }
     }
   </style>
